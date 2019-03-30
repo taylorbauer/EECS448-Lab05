@@ -24,8 +24,7 @@ if ($result = $mysqli->query($query)) {
 
     echo "<table><caption>List of users</caption>";
     echo "<tr><th>User ID no.</th><th>username</th></tr>";
- 
-    /* fetch associative array */
+
     while ($row = $result->fetch_assoc()) {
         $userid = $row["userid"];
         $username = $row["username"];
@@ -34,8 +33,8 @@ if ($result = $mysqli->query($query)) {
     }
 
     echo "</table>";
+    echo "<br><form><button type=\"submit\" formaction=\"AdminHome.html\">Back to Admin Home</button></form>";
  
-    /* free result set */
     $result->free();
 }
 
