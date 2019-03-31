@@ -22,19 +22,23 @@ if ($mysqli->connect_error) {
 $delete = FALSE;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-
+    $ids = "";
 
     for ($post_id = 1; $post_id < 1000; $post_id ++) {   // This is hacky, I know! Sorry!
         if (isset($_POST[$post_id])){
             $delete = TRUE;
             $query = "DELETE FROM Posts WHERE post_id='$post_id'";
             $mysqli->query($query);
+            if ($ids != "") {
+                $ids = $ids . ", ";
+            }
+            $ids = $ids . $post_id;
         }
     }
 }
 
 if ($delete) {
-    echo "Post(s) deleted successfully!";
+    echo "Post number(s) " . $ids . " deleted successfully!";
 }
 else {
     echo "You didn't select any posts!";
